@@ -14,3 +14,8 @@ And for cpp, you need to install the ccls,
 ``` shell
 brew(or apt-get) install ccls
 ```
+
+Maybe you also need to isntall yarn by
+```
+sudo apt-get install yarn
+```
