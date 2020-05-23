@@ -19,3 +19,6 @@ Maybe you also need to isntall yarn by
 ```
 sudo apt-get install yarn
 ```
+
+TODO List:
+WSL can not use markdownpreview
