@@ -451,7 +451,7 @@ autocmd BufEnter * silent! lcd %:p:h
   " ===
   " === Startify
   " ===
-   map <LEADER>s :Startify<CR>
+   noremap <LEADER>s :Startify<CR>
 
   " ===
   " === Switch
