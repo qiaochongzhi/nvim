@@ -448,6 +448,10 @@ autocmd BufEnter * silent! lcd %:p:h
   "let g: VM_maps['Find Under'] = '<C-d>'
   "let g: VM_maps['Find Subword Under'] = '<C-d>'
 
+  " ===
+  " === Startify
+  " ===
+   map <LEADER>s :Startify<CR>
 
   " ===
   " === Switch
