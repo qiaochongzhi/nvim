@@ -439,7 +439,8 @@ autocmd BufEnter * silent! lcd %:p:h
   " ===
   " === Tanular
   " ===
-  "map <LEADER>= Tabularize /=
+  let g:tabular_loaded = 1
+  vmap <SPACE>= :Tabularize /
 
   " ===
   " === Vim-visual-multi
