@@ -9,7 +9,7 @@
 
 " Todo List
 " 1 Snippets Plug
-" 2 [DONE] set color
+" 2 Check Color
 " 3 [DONE]set signature
 " 4 [DONE]set coc.nvim
 " 5 Set LaTeX;
@@ -437,6 +437,11 @@ autocmd BufEnter * silent! lcd %:p:h
   let g:SnazzyTransparent = 1
 
   " ===
+  " === Airline
+  " ===
+  let g:airline_section_b = '%{strftime("%H:%M")}'
+
+  " ===
   " === Tanular
   " ===
   let g:tabular_loaded = 1
@@ -619,10 +624,10 @@ autocmd BufEnter * silent! lcd %:p:h
   let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
 
   let g:Lf_ShortcutF = "<leader>ff"
-noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
-noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
-noremap <leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
-noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
+  noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
+  noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
+  noremap <leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
+  noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
 
 " ===
 " === Coc-nvim
