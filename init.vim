@@ -230,8 +230,8 @@ inoremap <C-k> <Esc>d$a
 let mapleader=" "
 
 " Save & quit
-map W :w<CR>
-map Q :q<CR>
+nnoremap W :w<CR>
+nnoremap Q :q<CR>
 
 inoremap jk <ESC>l
 inoremap jj <ESC>l
@@ -243,24 +243,24 @@ inoremap jj <ESC>l
 vnoremap Y :w !xclip -i -sel c<CR>
 
 " Search
-noremap <LEADER><CR> :nohlsearch<CR>
+nnoremap <LEADER><CR> :nohlsearch<CR>
 
-map <LEADER>rc : vsplit ~/.config/nvim/init.vim<CR>
+nnoremap <LEADER>rc : vsplit ~/.config/nvim/init.vim<CR>
 
 " Some map
 " map s <nop>
-map R :source $MYVIMRC<CR>
+nnoremap R :source $MYVIMRC<CR>
 
 " Faster in-line navigation
-noremap J 5j
-noremap K 5k
+nnoremap J 5j
+nnoremap K 5k
 
 
 " ===
 " === Window management
 " ===
 " Use <space> + arrow keys for moving the cursor around windows
-map <LEADER>w <C-w>w
+nnoremap <LEADER>w <C-w>w
 " map <LEADER>wh <C-w>h
 " map <LEADER>wj <C-w>j
 " map <LEADER>wk <C-w>k
@@ -289,9 +289,9 @@ map <right> :vertical resize+5<CR>
 " ===
 " === Tab management
 " ===
-map <LEADER>tt :tabe<CR>
-map <LEADER>tb :-tabnext<CR>
-map <LEADER>tn :+tabnext<CR>
+noremap <LEADER>tt :tabe<CR>
+noremap <LEADER>tb :-tabnext<CR>
+noremap <LEADER>tn :+tabnext<CR>
 
 " ===
 " === Other useful stuff
@@ -301,7 +301,7 @@ map <LEADER>tn :+tabnext<CR>
 map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 
 " Spelling Check with <space>sc
-map <LEADER>sc :set spell!<CR>
+noremap <LEADER>sc :set spell!<CR>
 noremap <C-x> ea<C-x>s
 inoremap <C-x> <Esc>ea<C-x>s
 
