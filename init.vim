@@ -360,7 +360,9 @@ autocmd BufEnter * silent! lcd %:p:h
   " Pretty Dress
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-  Plug 'connorholyday/vim-snazzy'
+  "Plug 'arcticicestudio/nord-vim'
+  Plug 'morhetz/gruvbox'
+  "Plug 'connorholyday/vim-snazzy'
   "Plug 'NLKNguyen/papercolor-theme'
   "Plug 'ayu-theme/ayu-vim'
   Plug 'bling/vim-bufferline'
@@ -430,8 +432,9 @@ autocmd BufEnter * silent! lcd %:p:h
 
   call plug#end()
 
-  color snazzy
-  let g:SnazzyTransparent = 1
+  "color snazzy
+  "let g:SnazzyTransparent = 1
+  colorscheme gruvbox
 
   " ===
   " === Airline
