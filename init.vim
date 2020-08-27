@@ -9,7 +9,7 @@
 
 " Todo List
 " 1 Snippets Plug
-" 2 Check Color
+" 2 [DONE]Check Color
 " 3 [DONE]set signature
 " 4 [DONE]set coc.nvim
 " 5 Set LaTeX;
@@ -360,11 +360,11 @@ autocmd BufEnter * silent! lcd %:p:h
   " Pretty Dress
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-  "Plug 'arcticicestudio/nord-vim'
+  Plug 'arcticicestudio/nord-vim'
   Plug 'morhetz/gruvbox'
-  "Plug 'connorholyday/vim-snazzy'
-  "Plug 'NLKNguyen/papercolor-theme'
-  "Plug 'ayu-theme/ayu-vim'
+  Plug 'connorholyday/vim-snazzy'
+  Plug 'NLKNguyen/papercolor-theme'
+  Plug 'ayu-theme/ayu-vim'
   Plug 'bling/vim-bufferline'
 
   " File navigation
@@ -434,7 +434,7 @@ autocmd BufEnter * silent! lcd %:p:h
 
   "color snazzy
   "let g:SnazzyTransparent = 1
-  colorscheme gruvbox
+  colorscheme PaperColor
 
   " ===
   " === Airline
