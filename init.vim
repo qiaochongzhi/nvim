@@ -440,6 +440,7 @@ autocmd BufEnter * silent! lcd %:p:h
   " === Airline
   " ===
   let g:airline_section_b = '%{strftime("%H:%M")}'
+  "let g:airline_theme = 'badwolf'
 
   " ===
   " === Tanular
@@ -640,7 +641,6 @@ let g:coc_global_extensions = [
   \'coc-json', 
   \'coc-vimlsp',
   \'coc-python',
-  \'coc-pyright',
   \'coc-clangd',
   \'coc-highlight',
   \'coc-snippets']
