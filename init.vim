@@ -1,11 +1,11 @@
 
-"  __  __     __     _____ __  __ ____   ____ 
-" |  \/  |_   \ \   / /_ _|  \/  |  _ \ / ___|
-" | |\/| | | | \ \ / / | || |\/| | |_) | |    
-" | |  | | |_| |\ V /  | || |  | |  _ <| |___ 
-" |_|  |_|\__, | \_/  |___|_|  |_|_| \_\\____|
-"          |___/                               
-"
+
+"  __  __     __     ___                    
+" |  \/  |_   \ \   / (_)_ __ ___  _ __ ___ 
+" | |\/| | | | \ \ / /| | '_ ` _ \| '__/ __|
+" | |  | | |_| |\ V / | | | | | | | | | (__ 
+" |_|  |_|\__, | \_/  |_|_| |_| |_|_|  \___|
+"         |___/                             
 
 " Todo List
 " 1 Snippets Plug
@@ -311,7 +311,7 @@ autocmd BufEnter * silent! lcd %:p:h
 " Call figlet
   map <LEADER>fi :r !figlet
 
-  " Compile function
+  "  Compile function 
   map r :call CompileRunGcc()<CR>
   func! CompileRunGcc()
     exec "w"
@@ -633,26 +633,38 @@ autocmd BufEnter * silent! lcd %:p:h
 " === Coc-nvim
 " ===
 " fix the most annoying bug that coc has
-silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
+"silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
 
 " install
-let g:coc_global_extensions = ['coc-ccls', 'coc-css', 'coc-java', 'coc-python', 'coc-r-lsp', 'coc-emmet', 'coc-yank', 'coc-texlab', 'coc-lsp-wl', 'coc-markdownlint', 'coc-spell-checker', 'coc-highlight', 'coc-snippets']
+let g:coc_global_extensions = [
+  \'coc-json', 
+  \'coc-vimlsp',
+  \'coc-python',
+  \'coc-pyright',
+  \'coc-ccls',
+  \'coc-highlight',
+  \'coc-snippets']
+
+
+"let g:coc_global_extensions = ['coc-ccls', 'coc-css', 'coc-java', 'coc-python', 'coc-r-lsp', 'coc-emmet', 'coc-yank', 'coc-texlab', 'coc-lsp-wl', 'coc-markdownlint', 'coc-spell-checker', 'coc-highlight', 'coc-snippets']
 
 " if hidden is not set, TextEdit might fail.
 set hidden
 
-" Better display for messages
-set cmdheight=1
-
 " You will have bad experience for diagnostic messages when it's default 4000.
-"set updatetime=199
+set updatetime=100
 
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
 
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("patch-8.1.1564")
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
 
-"always show signcolumns
-set signcolumn=yes
 
 " use <tab> for trigger completion and navigate to the next complete item
 inoremap <silent><expr> <Tab>
@@ -660,65 +672,69 @@ inoremap <silent><expr> <Tab>
     \ <SID>check_back_space() ? "\<Tab>" :
     \ coc#refresh()
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-"inoremap <silent><expr> <CR> pumvisible() ? "\<C-y><CR>" : "\<CR>"
+
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]	=~# '\s'
 endfunction
 
-" Use <C-l> for trigger snippet expand.
-imap <C-l> <Plug>(coc-snippets-expand)
+" Use <C-space> to trigger completion.
+"if has('nvim')
+  "inoremap <silent><expr> <c-space> coc#refresh()
+"else
+  "inoremap <silent><expr> <c-@> coc#refresh()
 
-" Use <C-j> for select text for visual placeholder of snippet.
-vmap <C-j> <Plug>(coc-snippets-select)
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" :"\<C-g>u\<CR>"
+else
+  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
 
-" Use <C-j> for jump to next placeholder, it's default of coc.nvim
-let g:coc_snippet_next = '<c-j>'
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location
+" list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)"
 
-" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-let g:coc_snippet_prev = '<c-k>'
-
-" Use <C-j> for both expand and jump (make expand higher priority.)
-imap <C-j> <Plug>(coc-snippets-expand-jump)
-
-" use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" Or use `complete_info` if your vim support it, like:
-" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Add status line support, for integration with other plugin, checkout `:h coc-status`
-"set statusline^=%{coc#status()}
-
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-"xmap <leader>a <Plug>(coc-codeaction-selected)
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
-
-"Remap for jumping to the definition
-nmap <silent> gf <Plug>(coc-definition)
-"Remap for jumping to the declaration
-nmap <silent> gc <Plug>(coc-declaration)
-"Remap for jumping to the implementation
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
-"Remap for jumping to the references
 nmap <silent> gr <Plug>(coc-references)
 
-" Use K to show documentation in preview window
-"nnoremap <silent> K :call <SID>show_documentation()<CR>
+" Use <LEADER>h to show documentation in preview window
+nnoremap <silent> <LEADER>h :call <SID>show_documentation()<CR>
 
-"function! s:show_documentation()
-  "if (index(['vim','help'], &filetype) >= 0)
-    "execute 'h '.expand('<cword>')
-  "else
-    "call CocAction('doHover')
-  "endif
-"endfunction
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Symbol renaming.
+nmap <LEADER>rn <Plug>(coc-rename)
+
+" Use <C-l> for trigger snippet expand.
+"imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+"vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+"let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+"let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+"imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+
 
 " ===
 " === Ultisnips
