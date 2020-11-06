@@ -443,7 +443,7 @@ autocmd BufEnter * silent! lcd %:p:h
   "let g:airline_theme = 'badwolf'
 
   " ===
-  " === Tanular
+  " === Tabular
   " ===
   let g:tabular_loaded = 1
   vmap <SPACE>= :Tabularize /
