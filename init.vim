@@ -418,6 +418,7 @@ autocmd BufEnter * silent! lcd %:p:h
   " mp jump to previous bookmark
 
   " Other useful utilities
+  Plug 'gcmt/wildfire.vim' " type <Enter> to select the closest text object
   Plug 'tpope/vim-surround' " type ysiw' to wrap the word with '' or type cs'` to change 'word' to `word` or in visual mode use S' to wrap the selected range with '' or use ySS to modify a line.
   Plug 'godlygeek/tabular' " type :Tabularize /=(:Tab/=) to align the =
   Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line;
