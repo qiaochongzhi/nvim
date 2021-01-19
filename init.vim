@@ -166,6 +166,9 @@ set scrolloff=5
 " Prevent auto Line Split
 set wrap
 
+" Stop the swap file
+set noswapfile
+
 set indentexpr=
 " Better backspace
 set backspace=indent,eol,start
