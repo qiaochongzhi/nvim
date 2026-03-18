@@ -1,0 +1,17 @@
+# swap / backup
+*.swp
+*.swo
+*~
+
+# macOS
+.DS_Store
+
+# logs / cache
+*.log
+
+# local test files
+tmp/
+test/
+
+# DON'T ignore this:
+# lazy-lock.json should be tracked

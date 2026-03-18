@@ -1,24 +1,49 @@
-# NeoVim Config for myself
+# 🧠 Neovim Config (Lua + Lazy.nvim)
 
-## Before Install
+A modern Neovim configuration for:
 
-For fortran, you need to install the fortran-language-server,
+- Scientific research
+- Programming
 
-``` shell
-conda install fortran-language-server
-pip install fortran-language-server
+## ✨ Features
+
+### 🧩 Core
+- lazy.nvim
+- LSP
+- nvim-cmp
+- LuaSnip
+- telescope.nvim
+- which-key.nvim
+
+### 🖥 UI
+- tokyonight
+- lualine
+
+### ✍️ Editing
+- nvim-autopairs
+- Comment.nvim
+- nvim-surround
+- undotree
+
+### 🔬 Research
+- vimtex
+- markdown-preview
+- custom snippets
+
+## 🚀 Installation
+
+```bash
+git clone https://github.com/<your-username>/nvim ~/.config/nvim
+nvim
 ```
 
-And for cpp, you need to install the ccls,
+## 📂 Structure
 
-``` shell
-brew(or apt-get) install ccls
+```
+init.lua
+lua/
+lazy-lock.json
 ```
 
-Maybe you also need to isntall yarn by
-```
-sudo apt-get install yarn
-```
-
-TODO List:
-WSL can not use markdownpreview
+## 📜 License
+MIT
