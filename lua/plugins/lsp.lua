@@ -99,6 +99,15 @@ return {
       })
       require("luasnip.loaders.from_vscode").lazy_load()
 
+      -- Copilot 幽灵文本：按需加载，避免与 copilot.lua 的加载顺序耦合
+      local function copilot_suggestion()
+        local ok, mod = pcall(require, "copilot.suggestion")
+        if ok then
+          return mod
+        end
+        return nil
+      end
+
       cmp.setup({
         snippet = {
           expand = function(args)
@@ -106,14 +115,37 @@ return {
           end,
         },
         mapping = cmp.mapping.preset.insert({
-          ["<C-n>"] = cmp.mapping.select_next_item(),
-          ["<C-p>"] = cmp.mapping.select_prev_item(),
+          -- 幽灵文本可见时：C-n/C-p 切换 Copilot 建议
+          -- （cmp 菜单打开时幽灵文本自动隐藏，两者不会冲突）
+          ["<C-n>"] = cmp.mapping(function(fallback)
+            local suggestion = copilot_suggestion()
+            if suggestion and suggestion.is_visible() then
+              suggestion.next()
+            elseif cmp.visible() then
+              cmp.select_next_item()
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
+          ["<C-p>"] = cmp.mapping(function(fallback)
+            local suggestion = copilot_suggestion()
+            if suggestion and suggestion.is_visible() then
+              suggestion.prev()
+            elseif cmp.visible() then
+              cmp.select_prev_item()
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
           ["<C-b>"] = cmp.mapping.scroll_docs(-4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<CR>"] = cmp.mapping.confirm({ select = true }),
           ["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
+            local suggestion = copilot_suggestion()
+            if suggestion and suggestion.is_visible() then
+              suggestion.accept()
+            elseif cmp.visible() then
               cmp.select_next_item()
             elseif luasnip.expand_or_jumpable() then
               luasnip.expand_or_jump()
@@ -132,7 +164,6 @@ return {
           end, { "i", "s" }),
         }),
         sources = cmp.config.sources({
-            { name = "copilot" },
             { name = "nvim_lsp" },
             { name = "luasnip" },
             { name = "path" },
